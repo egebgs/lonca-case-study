@@ -1,4 +1,7 @@
 from src.classes.product import Product
+import os
+from dotenv import load_dotenv
+from src.helpers.mongo_connection import connect_to_mongodb
 
 
 def create_product_instance(xml_data):  # Create a Product instance from XML data
@@ -22,5 +25,21 @@ def create_product_instance(xml_data):  # Create a Product instance from XML dat
     )
 
 
+# Load the .env file
+load_dotenv()
+
+
 def transform_data_for_mongo(products):  # Transform the data for MongoDB
-    return [product.to_dict() for product in products]
+    # Get the variables from .env
+    database_name = os.getenv('database_name')
+    collection_name = os.getenv('collection_name')
+
+    collection = connect_to_mongodb(database_name, collection_name)
+    for product in products:
+        product_dict = product.to_dict()
+        product_dict.pop('_id', None)
+        result = collection.update_one(
+            {'stock_code': product_dict['stock_code']},
+            {'$set': product_dict},  # the new data
+            upsert=True  # if the product doesn't exist, insert it
+        )

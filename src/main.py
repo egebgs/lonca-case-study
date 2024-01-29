@@ -11,14 +11,18 @@ if __name__ == "__main__":
 
     for xml_file in xml_files:
         xml_file_path = os.path.join(data_folder_path, xml_file)
+
         # parse the XML file,
         raw_data = parse_xml(xml_file_path)
+
         # transform the data,
         transformed_data = transform_data(raw_data)
+
         # create Product instances
         products = [create_product_instance(data) for data in transformed_data]
         db_collection = connect_to_mongodb('lonca_db', 'products_collection')
         transformed_products_for_mongo = transform_data_for_mongo(products)
+
         # and insert them into MongoDB.
         result = db_collection.insert_many(transformed_products_for_mongo)
         print(f"Inserted {len(result.inserted_ids)} documents into MongoDB from {xml_file}")

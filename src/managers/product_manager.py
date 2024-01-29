@@ -43,4 +43,3 @@ def transform_data_for_mongo(products):  # Transform the data for MongoDB
             {'$set': product_dict},  # the new data
             upsert=True  # if the product doesn't exist, insert it
         )
-        print(f"Matched and modified {result.matched_count} documents for product {product_dict['stock_code']}.")

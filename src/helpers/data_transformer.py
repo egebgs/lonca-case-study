@@ -6,7 +6,7 @@ def extract_description_info(description):
 
     # Find the tags
     model_measurements_tag = soup.find('strong', string=lambda text: 'Model Ölçüleri' in text)
-    product_info_tag = soup.find('strong', string=lambda text: 'Ürün Bilgisi' in text)
+    product_info_tag = soup.find('strong', string=lambda text: 'Ürün Ölçüleri' in text)
     fabric_info_tag = soup.find('strong', string=lambda text: 'Kumaş Bilgisi' in text)
     sample_size_tag = soup.find(string=lambda text: 'Modelin üzerindeki ürün' in text)
 

@@ -29,7 +29,7 @@ def transform_data(raw_data):
         status = "Active" if int(product['ProductDetails'].get('Quantity', 0)) > 0 else "Inactive"
         transformed_product = {
             'ProductId': product['ProductId'],
-            'Name': product['Name'].capitalize(),
+            'Name': product['Name'].title(),
             'Images': product['Images'],
             'Price': price,
             'DiscountedPrice': discounted_price,

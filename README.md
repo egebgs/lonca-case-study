@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ### 3. Set up the environment variables
 
-The project uses environment variables to configure certain aspects of its operation. These are defined in the .env file. Set the port, database_name, and collection_name according to your MongoDB setup. The environment variables will be provided.
+The project uses environment variables to configure certain aspects of its operation. These are defined in the .env file. Set the port, database_name, and collection_name according to your MongoDB setup which you need to run MongoDB. The environment variables will be provided.
 
 ### 4. Run the application
 
@@ -35,6 +35,7 @@ You can run the project using your preferred Python IDE. If you're using the com
 python main.py
 ```
 
+You can add different XML files in data folder for adding new objects to the database. 
 ### Design Decisions
 
 The project is designed with simplicity and modularity in mind. The main function, transform_data, takes in raw product data and transforms it into a more structured format. This function uses helper functions to extract specific pieces of information from the product descriptions.
